@@ -1,0 +1,9 @@
+{
+	"name": "WinLinkDataFactoryAPI",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4af3290c-c306-4c03-aac4-eb3c272c6a38",
+		"tenantId": "9c7de09d-9034-44c1-b462-c464fece204a"
+	}
+}
