@@ -39,7 +39,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Xml1",
+						"referenceName": "XMLBLOB",
 						"type": "DatasetReference"
 					}
 				],

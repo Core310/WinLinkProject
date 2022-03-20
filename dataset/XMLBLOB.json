@@ -1,5 +1,5 @@
 {
-	"name": "Xml1",
+	"name": "XMLBLOB",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputblob",
