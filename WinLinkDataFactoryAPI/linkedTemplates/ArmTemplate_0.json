@@ -1,0 +1,276 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "WinLinkDataFactoryAPI"
+		},
+		"DBLinker_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'DBLinker'"
+		},
+		"inputblob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'inputblob'"
+		},
+		"outputSQLFromCSV_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'outputSQLFromCSV'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DBLinker')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('DBLinker_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/inputblob')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('inputblob_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/outputSQLFromCSV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('outputSQLFromCSV_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/APITable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DBLinker",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Application",
+						"type": "varchar"
+					},
+					{
+						"name": "BytesReceived",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BytesSent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client",
+						"type": "varchar"
+					},
+					{
+						"name": "ClientGrid",
+						"type": "varchar"
+					},
+					{
+						"name": "Cms",
+						"type": "varchar"
+					},
+					{
+						"name": "Degrees",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Frequency",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "HoldingSeconds",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "IdTag",
+						"type": "varchar"
+					},
+					{
+						"name": "Kilometers",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastCommand",
+						"type": "varchar"
+					},
+					{
+						"name": "MessagesReceived",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MessagesSent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Mode",
+						"type": "varchar"
+					},
+					{
+						"name": "Server",
+						"type": "varchar"
+					},
+					{
+						"name": "ServerGrid",
+						"type": "varchar"
+					},
+					{
+						"name": "Sid",
+						"type": "varchar"
+					},
+					{
+						"name": "Timestamp",
+						"type": "varchar"
+					},
+					{
+						"name": "Version",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "APIDATA"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DBLinker')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/xml_blob_connector')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "inputblob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Xml",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "xmlinputs"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/inputblob')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Blob To SQL')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "xmlinputs"
+							},
+							{
+								"name": "Destination",
+								"value": "dbo.APIDATA"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "XmlSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*xml",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "XmlReadSettings",
+									"validationMode": "none",
+									"namespaces": true
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2
+						},
+						"inputs": [
+							{
+								"referenceName": "xml_blob_connector",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "APITable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/xml_blob_connector')]",
+				"[concat(variables('factoryId'), '/datasets/APITable')]"
+			]
+		}
+	]
+}
