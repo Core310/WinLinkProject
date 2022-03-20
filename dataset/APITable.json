@@ -1,10 +1,6 @@
 {
 	"name": "APITable",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "outputSQLFromCSV",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [

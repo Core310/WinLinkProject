@@ -15,17 +15,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": "delete from DataSetCSVTest",
@@ -41,257 +30,206 @@
 							{
 								"source": {
 									"name": "Application",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Application",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "BytesReceived",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "BytesReceived",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "BytesSent",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "BytesSent",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Client",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Client",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "ClientGrid",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "ClientGrid",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Cms",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Cms",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Degrees",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Degrees",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Frequency",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Frequency",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "HoldingSeconds",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "HoldingSeconds",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "IdTag",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "IdTag",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Kilometers",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Kilometers",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "LastCommand",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "LastCommand",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "MessagesReceived",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "MessagesReceived",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "MessagesSent",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "MessagesSent",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
 									"name": "Mode",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Mode",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Server",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Server",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "ServerGrid",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "ServerGrid",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Sid",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Sid",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Timestamp",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Timestamp",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
 									"name": "Version",
-									"type": "String",
-									"physicalType": "String"
+									"type": "String"
 								},
 								"sink": {
 									"name": "Version",
-									"type": "String",
-									"physicalType": "varchar"
+									"type": "String"
 								}
 							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						]
 					}
 				},
-				"inputs": [
-					{
-						"referenceName": "DataSetCSVTest",
-						"type": "DatasetReference"
-					}
-				],
 				"outputs": [
 					{
 						"referenceName": "APITable",
