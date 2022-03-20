@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Blob TO SQL",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -35,6 +35,7 @@
 						"formatSettings": {
 							"type": "XmlReadSettings",
 							"validationMode": "none",
+							"detectDataType": false,
 							"namespaces": true
 						}
 					},
