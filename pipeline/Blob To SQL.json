@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "APIToCSV",
+				"name": "BlobToSQL",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -19,7 +19,7 @@
 						"type": "XmlSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
+							"recursive": false,
 							"wildcardFileName": "*xml",
 							"enablePartitionDiscovery": false
 						},
