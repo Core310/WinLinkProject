@@ -35,7 +35,8 @@
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"dataIntegrationUnits": 2
 				},
 				"inputs": [
 					{
