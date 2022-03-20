@@ -19,7 +19,9 @@
 						"type": "XmlSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
+							"maxConcurrentConnections": 0,
 							"recursive": true,
+							"wildcardFileName": "WinlinkAppLog",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -31,9 +33,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate",
-						"disableMetricsCollection": false
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"dataIntegrationUnits": 2
