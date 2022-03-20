@@ -15,6 +15,20 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*xml",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
 					"sink": {
 						"type": "AzureSqlSink",
 						"preCopyScript": "delete from DataSetCSVTest",
@@ -230,6 +244,12 @@
 						]
 					}
 				},
+				"inputs": [
+					{
+						"referenceName": "xml_blob_connector",
+						"type": "DatasetReference"
+					}
+				],
 				"outputs": [
 					{
 						"referenceName": "APITable",
