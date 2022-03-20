@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "BlobToSQL",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -13,13 +13,22 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "xmlinputs"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.APIDATA"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": false,
+							"recursive": true,
 							"wildcardFileName": "*xml",
 							"enablePartitionDiscovery": false
 						},
@@ -31,218 +40,11 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete from DataSetCSVTest",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"disableMetricsCollection": false
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
-					"dataIntegrationUnits": 2,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "Application",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Application",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "BytesReceived",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BytesReceived",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "BytesSent",
-									"type": "String"
-								},
-								"sink": {
-									"name": "BytesSent",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "Client",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Client",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ClientGrid",
-									"type": "String"
-								},
-								"sink": {
-									"name": "ClientGrid",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Cms",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Cms",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Degrees",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Degrees",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "Frequency",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Frequency",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "HoldingSeconds",
-									"type": "String"
-								},
-								"sink": {
-									"name": "HoldingSeconds",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "IdTag",
-									"type": "String"
-								},
-								"sink": {
-									"name": "IdTag",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Kilometers",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Kilometers",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "LastCommand",
-									"type": "String"
-								},
-								"sink": {
-									"name": "LastCommand",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "MessagesReceived",
-									"type": "String"
-								},
-								"sink": {
-									"name": "MessagesReceived",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "MessagesSent",
-									"type": "String"
-								},
-								"sink": {
-									"name": "MessagesSent",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"name": "Mode",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Mode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Server",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Server",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "ServerGrid",
-									"type": "String"
-								},
-								"sink": {
-									"name": "ServerGrid",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Sid",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Sid",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Timestamp",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Timestamp",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"name": "Version",
-									"type": "String"
-								},
-								"sink": {
-									"name": "Version",
-									"type": "String"
-								}
-							}
-						]
-					}
+					"dataIntegrationUnits": 2
 				},
 				"inputs": [
 					{
