@@ -13,15 +13,23 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "xmlinputs"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.APIDATA"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "XmlSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"maxConcurrentConnections": 0,
 							"recursive": true,
-							"wildcardFileName": "WinlinkAppLog",
+							"wildcardFileName": "*xml",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
