@@ -11,9 +11,6 @@
 		"inputblob_connectionString": {
 			"value": ""
 		},
-		"outputSQLFromCSV_connectionString": {
-			"value": ""
-		},
 		"containerUri": {
 			"value": ""
 		},

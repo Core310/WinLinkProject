@@ -14,10 +14,6 @@
 		"inputblob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'inputblob'"
-		},
-		"outputSQLFromCSV_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'outputSQLFromCSV'"
 		}
 	},
 	"variables": {
@@ -119,96 +115,7 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Application",
-						"type": "varchar"
-					},
-					{
-						"name": "BytesReceived",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BytesSent",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Client",
-						"type": "varchar"
-					},
-					{
-						"name": "ClientGrid",
-						"type": "varchar"
-					},
-					{
-						"name": "Cms",
-						"type": "varchar"
-					},
-					{
-						"name": "Degrees",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Frequency",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "HoldingSeconds",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "IdTag",
-						"type": "varchar"
-					},
-					{
-						"name": "Kilometers",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "LastCommand",
-						"type": "varchar"
-					},
-					{
-						"name": "MessagesReceived",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "MessagesSent",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Mode",
-						"type": "varchar"
-					},
-					{
-						"name": "Server",
-						"type": "varchar"
-					},
-					{
-						"name": "ServerGrid",
-						"type": "varchar"
-					},
-					{
-						"name": "Sid",
-						"type": "varchar"
-					},
-					{
-						"name": "Timestamp",
-						"type": "varchar"
-					},
-					{
-						"name": "Version",
-						"type": "varchar"
-					}
-				],
+				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "APIDATA"
@@ -262,19 +169,6 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('inputblob_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/outputSQLFromCSV')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('outputSQLFromCSV_connectionString')]"
 				}
 			},
 			"dependsOn": []
