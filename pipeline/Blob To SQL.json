@@ -25,43 +25,229 @@
 				],
 				"typeProperties": {
 					"source": {
-						"type": "XmlSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*xml",
+							"wildcardFileName": "*csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "none",
-							"detectDataType": false,
-							"namespaces": true
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
 						"type": "AzureSqlSink",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate",
-						"disableMetricsCollection": false
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"dataIntegrationUnits": 2,
 					"translator": {
 						"type": "TabularTranslator",
-						"mapComplexValuesToString": true
+						"mappings": [
+							{
+								"source": {
+									"name": "RMS Trimode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Application",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "596",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BytesReceived",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "183",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BytesSent",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "KD0CNC",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Client",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EM38HE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ClientGrid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CMS-A",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Cms",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "226",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Degrees",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "3586500",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Frequency",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "48",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HoldingSeconds",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "85K7HPZD07KI",
+									"type": "String"
+								},
+								"sink": {
+									"name": "IdTag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "132",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Kilometers",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "FQ",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LastCommand",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MessagesReceived",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "0",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MessagesSent",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "Vara2300",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Mode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "K0SI",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Server",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EM39UA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ServerGrid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RMS Express-1.5.41.0-B2FHM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Sid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "2021-10-25T23:58:00Z",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Timestamp",
+									"type": "String"
+								}
+							}
+						]
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "xml_blob_connector",
+						"referenceName": "CSV_Blob",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "APITable",
+						"referenceName": "CSV_DB_SQL",
 						"type": "DatasetReference"
 					}
 				]
