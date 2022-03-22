@@ -47,7 +47,34 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/APITable')]",
+			"name": "[concat(parameters('factoryName'), '/CSV_Blob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "inputblob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "csvinputs"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/inputblob')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSV_DB_SQL')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -57,7 +84,92 @@
 				},
 				"annotations": [],
 				"type": "AzureSqlTable",
-				"schema": [],
+				"schema": [
+					{
+						"name": "Application",
+						"type": "varchar"
+					},
+					{
+						"name": "BytesReceived",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "BytesSent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Client",
+						"type": "varchar"
+					},
+					{
+						"name": "ClientGrid",
+						"type": "varchar"
+					},
+					{
+						"name": "Cms",
+						"type": "varchar"
+					},
+					{
+						"name": "Degrees",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Frequency",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "HoldingSeconds",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "IdTag",
+						"type": "varchar"
+					},
+					{
+						"name": "Kilometers",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LastCommand",
+						"type": "varchar"
+					},
+					{
+						"name": "MessagesReceived",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "MessagesSent",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Mode",
+						"type": "varchar"
+					},
+					{
+						"name": "Server",
+						"type": "varchar"
+					},
+					{
+						"name": "ServerGrid",
+						"type": "varchar"
+					},
+					{
+						"name": "Sid",
+						"type": "varchar"
+					},
+					{
+						"name": "Timestamp",
+						"type": "varchar"
+					}
+				],
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "APIDATA"
@@ -65,28 +177,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/DBLinker')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/xml_blob_connector')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "inputblob",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Xml",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "xmlinputs"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/inputblob')]"
 			]
 		},
 		{
@@ -118,44 +208,230 @@
 						],
 						"typeProperties": {
 							"source": {
-								"type": "XmlSource",
+								"type": "DelimitedTextSource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
-									"wildcardFileName": "*xml",
+									"wildcardFileName": "*csv",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
-									"type": "XmlReadSettings",
-									"validationMode": "none",
-									"detectDataType": false,
-									"namespaces": true
+									"type": "DelimitedTextReadSettings"
 								}
 							},
 							"sink": {
 								"type": "AzureSqlSink",
 								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
+								"sqlWriterUseTableLock": false
 							},
 							"enableStaging": false,
 							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
-								"mapComplexValuesToString": true
+								"mappings": [
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 1
+										},
+										"sink": {
+											"name": "Application",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 2
+										},
+										"sink": {
+											"name": "BytesReceived",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 3
+										},
+										"sink": {
+											"name": "BytesSent",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 4
+										},
+										"sink": {
+											"name": "Client",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 5
+										},
+										"sink": {
+											"name": "ClientGrid",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 6
+										},
+										"sink": {
+											"name": "Cms",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 7
+										},
+										"sink": {
+											"name": "Degrees",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 8
+										},
+										"sink": {
+											"name": "Frequency",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 9
+										},
+										"sink": {
+											"name": "HoldingSeconds",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 10
+										},
+										"sink": {
+											"name": "IdTag",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 11
+										},
+										"sink": {
+											"name": "Kilometers",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 12
+										},
+										"sink": {
+											"name": "LastCommand",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 13
+										},
+										"sink": {
+											"name": "MessagesReceived",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 14
+										},
+										"sink": {
+											"name": "MessagesSent",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 15
+										},
+										"sink": {
+											"name": "Mode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 16
+										},
+										"sink": {
+											"name": "Server",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 17
+										},
+										"sink": {
+											"name": "ServerGrid",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 18
+										},
+										"sink": {
+											"name": "Sid",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"type": "String",
+											"ordinal": 19
+										},
+										"sink": {
+											"name": "Timestamp",
+											"type": "String"
+										}
+									}
+								]
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "xml_blob_connector",
+								"referenceName": "CSV_Blob",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "APITable",
+								"referenceName": "CSV_DB_SQL",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -169,8 +445,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/xml_blob_connector')]",
-				"[concat(variables('factoryId'), '/datasets/APITable')]"
+				"[concat(variables('factoryId'), '/datasets/CSV_Blob')]",
+				"[concat(variables('factoryId'), '/datasets/CSV_DB_SQL')]"
 			]
 		}
 	]
