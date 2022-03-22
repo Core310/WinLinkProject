@@ -48,8 +48,8 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "RMS Trimode",
-									"type": "String"
+									"type": "String",
+									"ordinal": 1
 								},
 								"sink": {
 									"name": "Application",
@@ -58,8 +58,8 @@
 							},
 							{
 								"source": {
-									"name": "596",
-									"type": "String"
+									"type": "String",
+									"ordinal": 2
 								},
 								"sink": {
 									"name": "BytesReceived",
@@ -68,8 +68,8 @@
 							},
 							{
 								"source": {
-									"name": "183",
-									"type": "String"
+									"type": "String",
+									"ordinal": 3
 								},
 								"sink": {
 									"name": "BytesSent",
@@ -78,8 +78,8 @@
 							},
 							{
 								"source": {
-									"name": "KD0CNC",
-									"type": "String"
+									"type": "String",
+									"ordinal": 4
 								},
 								"sink": {
 									"name": "Client",
@@ -88,8 +88,8 @@
 							},
 							{
 								"source": {
-									"name": "EM38HE",
-									"type": "String"
+									"type": "String",
+									"ordinal": 5
 								},
 								"sink": {
 									"name": "ClientGrid",
@@ -98,8 +98,8 @@
 							},
 							{
 								"source": {
-									"name": "CMS-A",
-									"type": "String"
+									"type": "String",
+									"ordinal": 6
 								},
 								"sink": {
 									"name": "Cms",
@@ -108,8 +108,8 @@
 							},
 							{
 								"source": {
-									"name": "226",
-									"type": "String"
+									"type": "String",
+									"ordinal": 7
 								},
 								"sink": {
 									"name": "Degrees",
@@ -118,8 +118,8 @@
 							},
 							{
 								"source": {
-									"name": "3586500",
-									"type": "String"
+									"type": "String",
+									"ordinal": 8
 								},
 								"sink": {
 									"name": "Frequency",
@@ -128,8 +128,8 @@
 							},
 							{
 								"source": {
-									"name": "48",
-									"type": "String"
+									"type": "String",
+									"ordinal": 9
 								},
 								"sink": {
 									"name": "HoldingSeconds",
@@ -138,8 +138,8 @@
 							},
 							{
 								"source": {
-									"name": "85K7HPZD07KI",
-									"type": "String"
+									"type": "String",
+									"ordinal": 10
 								},
 								"sink": {
 									"name": "IdTag",
@@ -148,8 +148,8 @@
 							},
 							{
 								"source": {
-									"name": "132",
-									"type": "String"
+									"type": "String",
+									"ordinal": 11
 								},
 								"sink": {
 									"name": "Kilometers",
@@ -158,8 +158,8 @@
 							},
 							{
 								"source": {
-									"name": "FQ",
-									"type": "String"
+									"type": "String",
+									"ordinal": 12
 								},
 								"sink": {
 									"name": "LastCommand",
@@ -168,8 +168,8 @@
 							},
 							{
 								"source": {
-									"name": "1",
-									"type": "String"
+									"type": "String",
+									"ordinal": 13
 								},
 								"sink": {
 									"name": "MessagesReceived",
@@ -178,8 +178,8 @@
 							},
 							{
 								"source": {
-									"name": "0",
-									"type": "String"
+									"type": "String",
+									"ordinal": 14
 								},
 								"sink": {
 									"name": "MessagesSent",
@@ -188,8 +188,8 @@
 							},
 							{
 								"source": {
-									"name": "Vara2300",
-									"type": "String"
+									"type": "String",
+									"ordinal": 15
 								},
 								"sink": {
 									"name": "Mode",
@@ -198,8 +198,8 @@
 							},
 							{
 								"source": {
-									"name": "K0SI",
-									"type": "String"
+									"type": "String",
+									"ordinal": 16
 								},
 								"sink": {
 									"name": "Server",
@@ -208,8 +208,8 @@
 							},
 							{
 								"source": {
-									"name": "EM39UA",
-									"type": "String"
+									"type": "String",
+									"ordinal": 17
 								},
 								"sink": {
 									"name": "ServerGrid",
@@ -218,8 +218,8 @@
 							},
 							{
 								"source": {
-									"name": "RMS Express-1.5.41.0-B2FHM",
-									"type": "String"
+									"type": "String",
+									"ordinal": 18
 								},
 								"sink": {
 									"name": "Sid",
@@ -228,8 +228,8 @@
 							},
 							{
 								"source": {
-									"name": "2021-10-25T23:58:00Z",
-									"type": "String"
+									"type": "String",
+									"ordinal": 19
 								},
 								"sink": {
 									"name": "Timestamp",

@@ -14,90 +14,9 @@
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
+			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "Application",
-				"type": "String"
-			},
-			{
-				"name": "BytesReceived",
-				"type": "String"
-			},
-			{
-				"name": "BytesSent",
-				"type": "String"
-			},
-			{
-				"name": "Client",
-				"type": "String"
-			},
-			{
-				"name": "ClientGrid",
-				"type": "String"
-			},
-			{
-				"name": "Cms",
-				"type": "String"
-			},
-			{
-				"name": "Degrees",
-				"type": "String"
-			},
-			{
-				"name": "Frequency",
-				"type": "String"
-			},
-			{
-				"name": "HoldingSeconds",
-				"type": "String"
-			},
-			{
-				"name": "IdTag",
-				"type": "String"
-			},
-			{
-				"name": "Kilometers",
-				"type": "String"
-			},
-			{
-				"name": "LastCommand",
-				"type": "String"
-			},
-			{
-				"name": "MessagesReceived",
-				"type": "String"
-			},
-			{
-				"name": "MessagesSent",
-				"type": "String"
-			},
-			{
-				"name": "Mode",
-				"type": "String"
-			},
-			{
-				"name": "Server",
-				"type": "String"
-			},
-			{
-				"name": "ServerGrid",
-				"type": "String"
-			},
-			{
-				"name": "Sid",
-				"type": "String"
-			},
-			{
-				"name": "Timestamp",
-				"type": "String"
-			},
-			{
-				"name": "Version",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }

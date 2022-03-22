@@ -91,10 +91,6 @@
 			{
 				"name": "Timestamp",
 				"type": "varchar"
-			},
-			{
-				"name": "Version",
-				"type": "varchar"
 			}
 		],
 		"typeProperties": {
